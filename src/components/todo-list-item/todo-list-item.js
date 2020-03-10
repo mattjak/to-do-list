@@ -1,13 +1,15 @@
 import React from "react";
 import './todo-list-item.css'
+export default class ToDoListItem  extends React.Component{
+        render() {
+            const {label, important = false} = this.props;
 
-const ToDoListItem = ({label, important = false}) => {
-    const style = {
-        color: important ? 'red' : 'black'
-    };
-    return (
+            const style = {
+                color: important ? 'red' : 'black'
+            };
+            return (
 
-        <span className='to-do-list-item' >
+                <span className='to-do-list-item' >
         <span style={style} className="to-do-list-item-label">
             {label}
         </span>
@@ -18,6 +20,7 @@ const ToDoListItem = ({label, important = false}) => {
                     <i className="fa fa-trash-o"/>
             </button>
         </span>
-    )
-};
-export default ToDoListItem;
+            )
+        }
+}
+
