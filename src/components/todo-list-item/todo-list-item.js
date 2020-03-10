@@ -1,16 +1,31 @@
 import React from "react";
 import './todo-list-item.css'
-export default class ToDoListItem  extends React.Component{
-        render() {
-            const {label, important = false} = this.props;
 
-            const style = {
-                color: important ? 'red' : 'black'
-            };
-            return (
+export default class ToDoListItem extends React.Component {
+    state = {
+        done: false
+    }
+    onLabelClick = () => {
+        this.setState(
+            {done:true}
+        )
 
-                <span className='to-do-list-item' >
-        <span style={style} className="to-do-list-item-label">
+    };
+
+    render() {
+        const {label, important = false} = this.props;
+        const {done} = this.state;
+        let classNames = 'to-do-list-item';
+        if (done){
+            classNames += ' done'
+        }
+        const style = {
+            color: important ? 'red' : 'black'
+        };
+        return (
+
+            <span className={classNames}>
+        <span onClick={this.onLabelClick} style={style} className="to-do-list-item-label">
             {label}
         </span>
             <button type="button" className="btn btn-outline-success btn-sm">
@@ -20,7 +35,8 @@ export default class ToDoListItem  extends React.Component{
                     <i className="fa fa-trash-o"/>
             </button>
         </span>
-            )
-        }
+        )
+    }
+
 }
 
